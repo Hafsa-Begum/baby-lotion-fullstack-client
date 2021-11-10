@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Johnson's Baby Lotion",
+        "quantity": "500ml",
+        "price": 20,
+        "description": " Nourish and moisturize baby and adult skin for 24 hours with our classic Johnson’s®  Baby Lotion, Hypoallergenic Formula. Dermatologist Tested. Keep out of reach of children. For external use only.",
+        "image": "https://i.ibb.co/dgGG1Rk/johnson.jpg "
+    },
+    {
+        "name": "Baby Magic Gentle Baby Lotion",
+        "quantity": "488ml",
+        "price": 30,
+        "description": " Helps skin feel hydrated to help replenish skin's moisture barrier, Rich in anti-oxidants known to help hydrate and soothe dry skin. Free of sulfates, dyes, parabens, phthales",
+        "image": "https://i.ibb.co/C2bGkpH/baby-magic.jpg "
+    },
+    {
+        "name": "Boots Baby Lotion Gentle & Mild",
+        "quantity": "500ml",
+        "price": 15,
+        "description": "Hypo-allergenic, Consultant Paediatrician approved. Helps skin feel hydrated to help replenish skin's moisture barrier, Rich in anti-oxidants known to help hydrate and soothe dry skin.",
+        "image": "https://i.ibb.co/YhQj9MW/boots-baby.jpg "
+    },
+    {
+        "name": "Private Labeling Welcomed Female Baby Lotion",
+        "quantity": "200ml",
+        "price": 15,
+        "description": "Enhanced shelf life, High purity, Smooth. Helps skin feel hydrated to help replenish skin's moisture barrier, Rich in anti-oxidants known to help hydrate and soothe dry skin.",
+        "image": "https://i.ibb.co/H7VZPL1/ruby-girl.jpg"
+    },
+    {
+        "name": "Comforts® Baby Lotion",
+        "quantity": "443ml",
+        "price": 25,
+        "description": "To help protect baby's skin from dryness. It leaves skin feeling soft, smooth, and non-greasy. It is mild enough for even delicate skin. Use it yourself to leave your skin feeling baby soft.",
+        "image": "https://i.ibb.co/cgGWCFn/comforts.webp "
+    },
+    {
+        "name": "Organic Baby Lotion Ultra Care",
+        "quantity": "500ml",
+        "price": 25,
+        "description": "Organic Baby Lotion Ultra Care / beauty fair lotion. It leaves skin feeling soft, smooth, and non-greasy. It is mild enough for even delicate skin. Use it yourself to leave your skin feeling baby soft.",
+        "image": "https://i.ibb.co/ggsns2c/organic.jpg "
+    },
+    {
+        "name": "Fred & Flo Cuddly Soft Baby Lotion",
+        "quantity": "300ml",
+        "price": 25,
+        "description": "Fred & Flo Cuddly Soft Baby Lotion leaves skin feeling soft, smooth, and non-greasy. It is mild enough for even delicate skin. Use it yourself to leave your skin feeling baby soft.",
+        "image": " https://i.ibb.co/zbYKJr7/fred-and-flo.jpg"
+    },
+    {
+        "name": "Babi Mild Sweety Pink Baby Lotion ",
+        "quantity": "400ml",
+        "price": 40,
+        "description": "Cleanse and moisturize your baby`s skin, It contains ingredients from milk and soya milk, Smoothe the skin and sooth any kind of irritation on your baby`s skin, Make your baby`s skin soft and silky and healthier.",
+        "image": "https://i.ibb.co/JBzwNSt/Babi-Mild-Sweety-Pink-Baby-Lotion.jpg "
+    },
+    {
+        "name": "Mothercare Baby Lotion ",
+        "quantity": "36ml",
+        "price": 5,
+        "description": "Mothercare Baby Lotion non-greasy formula delivers 16 hours of continuous moisture. Leaving the skin feeling incredibly soft, smooth and nourished. Make your baby`s skin soft and silky and healthier.",
+        "image": "https://i.ibb.co/wpNcNkq/mothercare.png"
+    },
+    {
+        "name": "Cosmo Baby Care Baby Lotion ",
+        "quantity": "300ml",
+        "price": 15,
+        "description": "Cosmo Baby Care Baby Lotion made with aloe vera, almond oil and vitamin E. Minarel oil and paraben free. Leaving the skin feeling incredibly smooth and nourished. Make your baby`s skin soft, silky.",
+        "image": "https://i.ibb.co/92dczjj/cosmo.jpg"
+    }
+]

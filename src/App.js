@@ -10,6 +10,8 @@ import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import AdminDashboard from "./Pages/AdminDashboard/AdminDashboard/AdminDashboard";
+import Explore from "./Pages/Explore/Explore";
+import SingleProducts from "./Pages/Home/SingleProducts/SingleProducts";
 
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
             <PrivateRoute path="/adminDashboard">
               <AdminDashboard />
             </PrivateRoute>
+            <PrivateRoute path="/products/:id">
+              <SingleProducts />
+            </PrivateRoute>
+            <Route path="/explore">
+              <Explore />
+            </Route>
             <Route path="/register">
               <Register />
             </Route>

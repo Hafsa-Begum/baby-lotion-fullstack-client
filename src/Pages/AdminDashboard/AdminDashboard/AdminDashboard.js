@@ -15,12 +15,23 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { Button } from '@mui/material';
+import ManageOrders from '../ManageOrders/ManageOrders';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddProducts from '../AddProducts/AddProducts';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import useAuth from '../../../hooks/useAuth';
+import MuiButton from '../../../StyledComponents/MuiButton';
 
 const drawerWidth = 240;
 
 function AdminDashboard(props) {
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    let { path, url } = useRouteMatch();
+    const { user, logOut } = useAuth();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -29,28 +40,21 @@ function AdminDashboard(props) {
     const drawer = (
         <div>
             <Toolbar />
+            <NavLink style={{
+                textDecoration: 'none',
+                marginBottom: '10px'
+            }} to='/home'><MuiButton> Go Home</MuiButton></NavLink>
+            <br />
             <Divider />
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            <NavLink to={`${url}`}><Button>My Orders</Button></NavLink> <br />
+            <NavLink to={`${url}/pay`}><Button>Pay</Button></NavLink> <br />
+            <NavLink to={`${url}/review`}><Button>Review</Button></NavLink> <br />
+            <NavLink to={`${url}/manageOrders`}><Button>Manage Orders</Button></NavLink>
+            <NavLink to={`${url}/addProducts`}><Button>Add Products</Button></NavLink>
+            <NavLink to={`${url}/manageProducts`}><Button>Manage Products</Button></NavLink>
+            <NavLink to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
+
+
         </div>
     );
 
@@ -76,9 +80,17 @@ function AdminDashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography style={{ marginRight: 'auto' }} variant="h6" noWrap component="div">
                         Admin Dashboard
                     </Typography>
+                    <Box>
+                        {
+                            user.email &&
+                            <>
+                                <MuiButton onClick={logOut}>Logout</MuiButton>  <span>{user.displayName}</span>
+                            </>
+                        }
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Box
@@ -118,9 +130,21 @@ function AdminDashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    content here
-                </Typography>
+                <Switch>
+                    <Route exact path={`${path}/manageOrders`}>
+                        <ManageOrders />
+                    </Route>
+
+                    <Route path={`${path}/addProducts`}>
+                        <AddProducts />
+                    </Route>
+                    <Route path={`${path}/manageProducts`}>
+                        <ManageProducts />
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin />
+                    </Route>
+                </Switch>
 
             </Box>
         </Box>
