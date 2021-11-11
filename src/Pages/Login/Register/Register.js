@@ -1,12 +1,13 @@
 import { Container, TextField, Typography, Box } from '@mui/material';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import MuiButton from '../../../StyledComponents/MuiButton';
 import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
     const [loginData, setLoginData] = useState('');
-    const { registerUser } = useAuth()
+    const { registerUser } = useAuth();
+    const history = useHistory();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -19,7 +20,7 @@ const Register = () => {
     }
 
     const handleOnSubmit = e => {
-        registerUser(loginData.email, loginData.password, loginData.name1 + loginData.name2)
+        registerUser(loginData.email, loginData.password, loginData.name, history)
         e.preventDefault();
     }
     return (
@@ -45,18 +46,11 @@ const Register = () => {
                         <TextField
                             sx={{ width: '90%', m: 2 }}
                             id="standard-basic"
-                            name="name1"
-                            label="First Name"
+                            name="name"
+                            label="Your Name"
                             variant="standard"
                             onBlur={handleOnBlur} />
 
-                        <TextField
-                            sx={{ width: '90%', m: 2 }}
-                            id="standard-basic"
-                            name="name2"
-                            label="Second Name"
-                            variant="standard"
-                            onBlur={handleOnBlur} />
                         <TextField
                             sx={{ width: '90%', m: 2 }}
                             id="standard-basic"

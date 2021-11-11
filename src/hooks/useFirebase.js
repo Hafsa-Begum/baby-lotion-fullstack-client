@@ -22,15 +22,14 @@ const useFirebase = () => {
                 setUser(newUser);
                 updateProfile(auth.currentUser, {
                     displayName: name
-                }).catch((error) => {
                 })
-                    .finally(() => setIsLoading(false));
+                history.replace('/')
             })
-        history.replace('/')
             .catch((error) => {
                 setError(error.message)
                 console.log(error)
-            });
+            })
+            .finally(() => setIsLoading(false));
     }
 
     const loginUser = (email, password, location, history) => {

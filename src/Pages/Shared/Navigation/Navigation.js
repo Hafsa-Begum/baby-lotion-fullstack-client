@@ -31,8 +31,8 @@ export default function Navigation() {
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/myBooking'>
                                 <Button color="inherit">My Booking</Button>
                             </NavLink>
-                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/adminDashboard'>
-                                <Button color="inherit">Admin Dashboard</Button>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to='/dashboard'>
+                                <Button color="inherit">Dashboard</Button>
                             </NavLink>
                             <MuiButton onClick={logOut}>Logout</MuiButton> <span>{user.displayName}</span>
                         </> :

@@ -23,6 +23,9 @@ import AddProducts from '../AddProducts/AddProducts';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import useAuth from '../../../hooks/useAuth';
 import MuiButton from '../../../StyledComponents/MuiButton';
+import MyOrders from '../MyOrders/MyOrders';
+import Payment from '../Payment/Payment';
+import AddReview from '../AddReview/AddReview';
 
 const drawerWidth = 240;
 
@@ -47,11 +50,11 @@ function AdminDashboard(props) {
             <br />
             <Divider />
             <NavLink to={`${url}`}><Button>My Orders</Button></NavLink> <br />
-            <NavLink to={`${url}/pay`}><Button>Pay</Button></NavLink> <br />
-            <NavLink to={`${url}/review`}><Button>Review</Button></NavLink> <br />
-            <NavLink to={`${url}/manageOrders`}><Button>Manage Orders</Button></NavLink>
+            <NavLink to={`${url}/payment`}><Button>Payment</Button></NavLink> <br />
+            <NavLink to={`${url}/addReview`}><Button>Add Review</Button></NavLink> <br />
+            <NavLink to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
             <NavLink to={`${url}/addProducts`}><Button>Add Products</Button></NavLink>
-            <NavLink to={`${url}/manageProducts`}><Button>Manage Products</Button></NavLink>
+            <NavLink to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
             <NavLink to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
 
 
@@ -81,7 +84,7 @@ function AdminDashboard(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography style={{ marginRight: 'auto' }} variant="h6" noWrap component="div">
-                        Admin Dashboard
+                        Dashboard
                     </Typography>
                     <Box>
                         {
@@ -131,6 +134,15 @@ function AdminDashboard(props) {
             >
                 <Toolbar />
                 <Switch>
+                    <Route exact path={path}>
+                        <MyOrders />
+                    </Route>
+                    <Route exact path={`${path}/payment`}>
+                        <Payment />
+                    </Route>
+                    <Route exact path={`${path}/addReview`}>
+                        <AddReview />
+                    </Route>
                     <Route exact path={`${path}/manageOrders`}>
                         <ManageOrders />
                     </Route>
