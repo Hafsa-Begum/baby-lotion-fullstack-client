@@ -52,7 +52,7 @@ const AddReview = () => {
                             id="outlined-size-small"
                             name="email"
                             onBlur={handleOnBlur}
-                            defaultValue={user.email}
+                            placeholder={user.email}
                             size="small"
                         />
                         <TextField
@@ -61,7 +61,7 @@ const AddReview = () => {
                             id="outlined-size-small"
                             name="name"
                             onBlur={handleOnBlur}
-                            defaultValue={user.displayName}
+                            placeholder={user.displayName}
                             size="small"
                         />
                         <TextField
@@ -69,7 +69,7 @@ const AddReview = () => {
                             id="outlined-size-small"
                             name="image"
                             onBlur={handleOnBlur}
-                            defaultValue="Your Image Url"
+                            placeholder="Your Image Url"
                             size="small"
                         />
                         <TextField
@@ -77,7 +77,7 @@ const AddReview = () => {
                             id="outlined-size-small"
                             name="designation"
                             onBlur={handleOnBlur}
-                            defaultValue="Your Designation"
+                            placeholder="Your Designation"
                             size="small"
                         />
                         <textarea
@@ -94,7 +94,7 @@ const AddReview = () => {
                             id="outlined-size-small"
                             name="rating"
                             onBlur={handleOnBlur}
-                            defaultValue="Give Rating(0-5)"
+                            placeholder="Give Rating(0-5)"
                             size="small"
                         />
 

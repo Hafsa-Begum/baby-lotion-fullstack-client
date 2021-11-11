@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
+import UpdateModal from '../UpdateModal/UpdateModal';
+import { Alert } from '@mui/material';
 
 
 const ManageProducts = () => {
@@ -21,7 +23,7 @@ const ManageProducts = () => {
     }, [])
 
     const handleDeleteProduct = id => {
-        const proceed = window.confirm('Are you sure, you want to cancel order?')
+        const proceed = window.confirm('Are you sure, you want to delete product?')
         if (proceed) {
             fetch(`http://localhost:5000/deleteProduct/${id}`, {
                 method: 'DELETE',
@@ -33,7 +35,7 @@ const ManageProducts = () => {
                 .then(data => {
                     console.log(data)
                     if (data.deletedCount) {
-                        alert('Your order is cancelled.');
+                        alert('Your product is deleted.');
                         const remaining = manageProducts.filter(order => order._id !== id);
                         setManageProducts(remaining);
                     }
@@ -41,12 +43,18 @@ const ManageProducts = () => {
         }
     }
 
-    const handleUpdateProduct = id => {
-        alert('Do you want update')
-    }
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [openUpdate, setUpdateOpen] = React.useState(false);
+    const handleUpdateOpen = () => setUpdateOpen(true);
+    const handleUpdateClose = () => setUpdateOpen(false);
+
+    // const handleUpdateProduct = id =>{
+
+    // }
     return (
         <div>
             <h2>Manage All Products {manageProducts.length}</h2>
+            {updateSuccess && <Alert severity="success">Your product is updated successfully!</Alert>}
             <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Appointments table">
                     <TableHead>
@@ -59,26 +67,33 @@ const ManageProducts = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {manageProducts.map((row) => (
+                        {manageProducts.map((product) => (
                             <TableRow
-                                key={row._id}
+                                key={product._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    <img style={{ height: '100px', width: '100px' }} src={row?.image} alt="" />
+                                    <img style={{ height: '100px', width: '100px' }} src={product?.image} alt="" />
                                 </TableCell>
-                                <TableCell align="right">{row?.name}</TableCell>
-                                <TableCell align="right">${row?.price}</TableCell>
-                                <TableCell align="right">{row?.quantity}</TableCell>
+                                <TableCell align="right">{product?.name}</TableCell>
+                                <TableCell align="right">${product?.price}</TableCell>
+                                <TableCell align="right">{product?.quantity}</TableCell>
                                 <TableCell align="right">
-                                    <IconButton onClick={() => handleUpdateProduct(row?._id)} aria-label="create" size="large" >
+                                    <IconButton onClick={handleUpdateOpen} aria-label="create" size="large" >
                                         < CreateIcon fontSize="inherit" />
                                     </IconButton>
 
-                                    <IconButton onClick={() => handleDeleteProduct(row?._id)} aria-label="delete" size="large">
+                                    <IconButton onClick={() => handleDeleteProduct(product?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>
+                                <UpdateModal
+                                    setUpdateSuccess={setUpdateSuccess}
+                                    product={product}
+                                    openUpdate={openUpdate}
+                                    handleUpdateClose={handleUpdateClose}
+                                >
+                                </UpdateModal>
                             </TableRow>
                         ))}
                     </TableBody>

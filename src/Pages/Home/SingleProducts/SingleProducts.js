@@ -28,9 +28,9 @@ const SingleProducts = () => {
     }
 
     const [orderSuccess, setOrderSuccess] = useState(false);
-    const [openBooking, setBookingOpen] = React.useState(false);
-    const handleBookingOpen = () => setBookingOpen(true);
-    const handleBookingClose = () => setBookingOpen(false);
+    const [openOrder, setOrderOpen] = React.useState(false);
+    const handleOrderOpen = () => setOrderOpen(true);
+    const handleOrderClose = () => setOrderOpen(false);
     return (
         <div style={style}>
             <Container>
@@ -43,15 +43,15 @@ const SingleProducts = () => {
                         <Typography variant='h6' sx={{ fontWeight: 600, mb: 2 }}>Quantity: {singleProduct?.quantity} <span style={{ marginLeft: 40 }}>Price: ${singleProduct?.price}</span></Typography>
                         <Typography variant='h3' sx={{ fontWeight: 600, color: '#F63E7B' }}>{singleProduct?.name}</Typography>
                         <Typography variant='body1' sx={{ lineHeight: 2, my: 3 }}>{singleProduct?.description}</Typography>
-                        <MuiButton onClick={handleBookingOpen}>Place Order</MuiButton>
+                        <MuiButton onClick={handleOrderOpen}>Place Order</MuiButton>
                         <Button onClick={handleGoBack} variant="outlined" style={{ marginLeft: '50px' }}>Go Back</Button>
                     </Grid>
                 </Grid>
                 <OrderModal
                     setOrderSuccess={setOrderSuccess}
                     singleProduct={singleProduct}
-                    openBooking={openBooking}
-                    handleBookingClose={handleBookingClose}
+                    openOrder={openOrder}
+                    handleOrderClose={handleOrderClose}
                 ></OrderModal>
             </Container>
         </div>

@@ -20,46 +20,38 @@ const style = {
     p: 4,
 };
 
-const OrderModal = ({ singleProduct, openOrder, handleOrderClose, setOrderSuccess }) => {
-    const { name, price, image } = singleProduct;
-    const { user } = useAuth();
-    const initialInfo = { customerName: user.displayName, email: user.email, phone: '', address: '', status: 'pending' };
-    const [orderInfo, setOrderInfo] = useState(initialInfo);
-    const today = new Date();
-    const date = today.toLocaleDateString();
+const UpdateModal = ({ product, openUpdate, handleUpdateClose, setUpdateSuccess }) => {
+    const { _id, name, quantity, price, image, description } = product;
+    const [updateInfo, setUpdateInfo] = useState();
 
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
-        const newInfo = { ...orderInfo };
+        const newInfo = { ...updateInfo };
         newInfo[field] = value;
-        setOrderInfo(newInfo);
+        setUpdateInfo(newInfo);
     }
 
-    const handleOrderSubmit = e => {
+    const handleUpdateProductSubmit = e => {
         //collect order info
-        const orderData = {
-            ...orderInfo,
-            productImage: image,
-            productPrice: price,
-            productName: name,
-            date
-        };
-        console.log(orderData)
+        // const updateData = {
+        //     ...updateInfo
+        // }
+        const data = { _id };
         //send to the server
-        fetch('http://localhost:5000/addOrders', {
-            method: 'POST',
+        fetch('http://localhost:5000/updateProduct', {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(orderData)
+            body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.insertedId) {
-                    setOrderSuccess(true);
-                    handleOrderClose();
+                if (data.modifiedCount) {
+                    setUpdateSuccess(true);
+                    handleUpdateClose();
                 }
             });
 
@@ -70,74 +62,69 @@ const OrderModal = ({ singleProduct, openOrder, handleOrderClose, setOrderSucces
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={openOrder}
-            onClose={handleOrderClose}
+            open={openUpdate}
+            onClose={handleUpdateClose}
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
                 timeout: 500,
             }}
         >
-            <Fade in={openOrder}>
+            <Fade in={openUpdate}>
                 <Box sx={style}>
                     <Typography id="transition-modal-title" variant="h6" component="h2" sx={{ color: '#F63E7B' }}>
-                        {name}
+                        Update The Product
                     </Typography>
-                    <form onSubmit={handleOrderSubmit}>
+                    <form onSubmit={handleUpdateProductSubmit}>
+
                         <TextField
-                            sx={{ width: '90%', m: 1 }}
+
+                            sx={{ width: '100%', m: 1 }}
                             id="outlined-size-small"
-                            placeholder={date}
-                            size="small"
-                        />
-                        <TextField
-                            disabled
-                            sx={{ width: '90%', m: 1 }}
-                            id="outlined-size-small"
-                            placeholder={price}
-                            size="small"
-                        />
-                        <TextField
-                            disabled
-                            sx={{ width: '90%', m: 1 }}
-                            id="outlined-size-small"
-                            placeholder={image}
-                            size="small"
-                        />
-                        <TextField
-                            sx={{ width: '90%', m: 1 }}
-                            id="outlined-size-small"
-                            name="patientName"
+                            name="name"
                             onBlur={handleOnBlur}
-                            placeholder={user.displayName}
+                            defaultValue={name}
                             size="small"
                         />
                         <TextField
-                            sx={{ width: '90%', m: 1 }}
+
+                            sx={{ width: '100%', m: 1 }}
                             id="outlined-size-small"
-                            name="email"
+                            name="quantity"
                             onBlur={handleOnBlur}
-                            placeholder={user.email}
+                            defaultValue={quantity}
                             size="small"
                         />
                         <TextField
-                            sx={{ width: '90%', m: 1 }}
+                            sx={{ width: '100%', m: 1 }}
                             id="outlined-size-small"
-                            name="phone"
+                            name="price"
                             onBlur={handleOnBlur}
-                            placeholder="Phone Number"
+                            defaultValue={price}
+                            size="small"
+                        />
+                        <textarea
+                            rows='6'
+                            style={{ width: '100%' }}
+                            id="outlined-size-small"
+                            name="description"
+                            onBlur={handleOnBlur}
+                            defaultValue={description}
                             size="small"
                         />
                         <TextField
-                            sx={{ width: '90%', m: 1 }}
+                            sx={{ width: '100%', m: 1 }}
                             id="outlined-size-small"
-                            name="address"
+                            name="image"
                             onBlur={handleOnBlur}
-                            placeholder="Your Address"
+                            defaultValue={image}
                             size="small"
                         />
 
+                        <br />
+
                         <MuiButton type="submit" >Submit</MuiButton>
+
                     </form>
                 </Box>
             </Fade>
@@ -145,4 +132,4 @@ const OrderModal = ({ singleProduct, openOrder, handleOrderClose, setOrderSucces
     );
 };
 
-export default OrderModal;
+export default UpdateModal;

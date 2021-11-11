@@ -26,6 +26,7 @@ import MuiButton from '../../../StyledComponents/MuiButton';
 import MyOrders from '../MyOrders/MyOrders';
 import Payment from '../Payment/Payment';
 import AddReview from '../AddReview/AddReview';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute'
 
 const drawerWidth = 240;
 
@@ -34,7 +35,7 @@ function AdminDashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
-    const { user, logOut } = useAuth();
+    const { user, logOut, admin } = useAuth();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -52,11 +53,16 @@ function AdminDashboard(props) {
             <NavLink to={`${url}`}><Button>My Orders</Button></NavLink> <br />
             <NavLink to={`${url}/payment`}><Button>Payment</Button></NavLink> <br />
             <NavLink to={`${url}/addReview`}><Button>Add Review</Button></NavLink> <br />
-            <NavLink to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
-            <NavLink to={`${url}/addProducts`}><Button>Add Products</Button></NavLink>
-            <NavLink to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
-            <NavLink to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
+            {
+                admin &&
+                <Box>
+                    <NavLink to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
+                    <NavLink to={`${url}/addProducts`}><Button>Add Products</Button></NavLink>
+                    <NavLink to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
+                    <NavLink to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
 
+                </Box>
+            }
 
         </div>
     );
@@ -143,19 +149,19 @@ function AdminDashboard(props) {
                     <Route exact path={`${path}/addReview`}>
                         <AddReview />
                     </Route>
-                    <Route exact path={`${path}/manageOrders`}>
+                    <AdminRoute exact path={`${path}/manageOrders`}>
                         <ManageOrders />
-                    </Route>
+                    </AdminRoute>
 
-                    <Route path={`${path}/addProducts`}>
+                    <AdminRoute path={`${path}/addProducts`}>
                         <AddProducts />
-                    </Route>
-                    <Route path={`${path}/manageProducts`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageProducts`}>
                         <ManageProducts />
-                    </Route>
-                    <Route path={`${path}/makeAdmin`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
-                    </Route>
+                    </AdminRoute>
                 </Switch>
 
             </Box>
