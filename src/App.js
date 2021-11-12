@@ -12,6 +12,7 @@ import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 import Explore from "./Pages/Explore/Explore";
 import SingleProducts from "./Pages/Home/SingleProducts/SingleProducts";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="*">
+              <ErrorPage />
             </Route>
           </Switch>
         </Router>

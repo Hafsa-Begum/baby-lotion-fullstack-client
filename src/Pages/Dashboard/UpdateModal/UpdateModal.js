@@ -39,7 +39,7 @@ const UpdateModal = ({ product, openUpdate, handleUpdateClose, setUpdateSuccess 
         // }
         const data = { _id };
         //send to the server
-        fetch('http://localhost:5000/updateProduct', {
+        fetch('https://secret-castle-32920.herokuapp.com/updateProduct', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

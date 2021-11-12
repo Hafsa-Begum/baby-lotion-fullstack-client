@@ -20,7 +20,7 @@ const AddProducts = () => {
             ...addProducts
         };
 
-        fetch('http://localhost:5000/addProducts', {
+        fetch('https://secret-castle-32920.herokuapp.com/addProducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

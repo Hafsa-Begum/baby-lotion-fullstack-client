@@ -6,10 +6,10 @@ import MuiButton from '../../../StyledComponents/MuiButton';
 
 const Banner = () => {
     const style = {
-        minHeight: 500,
-        height: '100vh',
+        backgroundColor: 'rgba(246, 62, 123, .1)',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: '0px'
     }
     return (
         <div style={style}>

@@ -47,7 +47,7 @@ const OrderModal = ({ singleProduct, openOrder, handleOrderClose, setOrderSucces
         };
         console.log(orderData)
         //send to the server
-        fetch('http://localhost:5000/addOrders', {
+        fetch('https://secret-castle-32920.herokuapp.com/addOrders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

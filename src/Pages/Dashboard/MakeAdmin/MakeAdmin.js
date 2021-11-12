@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import MuiButton from '../../../StyledComponents/MuiButton';
 
@@ -10,7 +10,7 @@ const MakeAdmin = () => {
     }
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://secret-castle-32920.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -33,6 +33,7 @@ const MakeAdmin = () => {
             textAlign: 'center',
             marginTop: '50px'
         }}>
+            <Typography sx={{ mb: 10 }} variant="p">Enter email whom you want to made admin</Typography>
             <form onSubmit={handleAdminSubmit}>
                 <TextField
                     sx={{ width: '30%', m: 2 }}

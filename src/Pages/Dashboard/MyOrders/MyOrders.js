@@ -9,7 +9,7 @@ const MyOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myOrders/${user.email}`)
+        fetch(`https://secret-castle-32920.herokuapp.com/myOrders/${user.email}`)
             .then(res => res.json())
             .then(data => setMyOrders(data))
     }, [user.email]);
@@ -17,7 +17,7 @@ const MyOrders = () => {
     const handleCancelOrder = id => {
         const proceed = window.confirm('Are you sure, you want to cancel order?')
         if (proceed) {
-            fetch(`http://localhost:5000/deleteMyOrder/${id}`, {
+            fetch(`https://secret-castle-32920.herokuapp.com/deleteMyOrder/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json'

@@ -10,7 +10,7 @@ const SingleProducts = () => {
     const history = useHistory();
     const style = {
         minHeight: 500,
-        height: '100vh',
+        // height: '100vh',
         display: 'flex',
         alignItems: 'center',
         marginBottom: '40px'
@@ -18,7 +18,7 @@ const SingleProducts = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singleProducts/${id}`)
+        fetch(`https://secret-castle-32920.herokuapp.com/singleProducts/${id}`)
             .then(res => res.json())
             .then(data => setSingleProduct(data))
     }, [id]);
@@ -37,7 +37,7 @@ const SingleProducts = () => {
                 {orderSuccess && <Alert severity="success">Your order is placed successfully!</Alert>}
                 <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                     <Grid item xs={12} md={6} lg={6}>
-                        <img style={{ borderRadius: '50%' }} width='100%' src={singleProduct?.image} alt="" />
+                        <img style={{ borderRadius: '50%', hight: '500px' }} width='100%' src={singleProduct?.image} alt="" />
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
                         <Typography variant='h6' sx={{ fontWeight: 600, mb: 2 }}>Quantity: {singleProduct?.quantity} <span style={{ marginLeft: 40 }}>Price: ${singleProduct?.price}</span></Typography>

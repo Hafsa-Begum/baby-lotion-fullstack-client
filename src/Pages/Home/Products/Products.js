@@ -18,7 +18,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const classes = useStyles();
     useEffect(() => {
-        fetch('http://localhost:5000/sixProducts')
+        fetch('https://secret-castle-32920.herokuapp.com/sixProducts')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])

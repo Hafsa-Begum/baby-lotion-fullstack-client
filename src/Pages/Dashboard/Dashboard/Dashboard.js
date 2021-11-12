@@ -6,12 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -27,6 +21,7 @@ import MyOrders from '../MyOrders/MyOrders';
 import Payment from '../Payment/Payment';
 import AddReview from '../AddReview/AddReview';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute'
+import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 
 const drawerWidth = 240;
 
@@ -45,21 +40,27 @@ function AdminDashboard(props) {
         <div>
             <Toolbar />
             <NavLink style={{
-                textDecoration: 'none',
-                marginBottom: '10px'
+                textDecoration: 'none'
             }} to='/home'><MuiButton> Go Home</MuiButton></NavLink>
             <br />
             <Divider />
-            <NavLink to={`${url}`}><Button>My Orders</Button></NavLink> <br />
-            <NavLink to={`${url}/payment`}><Button>Payment</Button></NavLink> <br />
-            <NavLink to={`${url}/addReview`}><Button>Add Review</Button></NavLink> <br />
+            <NavLink style={{
+                textDecoration: 'none',
+
+            }} to={`${url}`}><Button>My Orders</Button></NavLink> <br />
+            <NavLink style={{
+                textDecoration: 'none'
+            }} to={`${url}/payment`}><Button>Payment</Button></NavLink> <br />
+            <NavLink style={{
+                textDecoration: 'none'
+            }} to={`${url}/addReview`}><Button><AddBoxRoundedIcon />  Add Review</Button></NavLink> <br />
             {
                 admin &&
                 <Box>
-                    <NavLink to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
-                    <NavLink to={`${url}/addProducts`}><Button>Add Products</Button></NavLink>
-                    <NavLink to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
-                    <NavLink to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/addProducts`}><Button> <AddBoxRoundedIcon /> Add Products</Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
 
                 </Box>
             }

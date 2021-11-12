@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     ratingDesign: {
-        color: '#F63E7B',
+        color: '#F63E7B !important',
 
     },
     review: {
@@ -22,7 +22,7 @@ const Reviews = () => {
     const classes = useStyles();
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://secret-castle-32920.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -41,7 +41,7 @@ const Reviews = () => {
                             <Box className={classes.review} sx={{ mx: 3, p: 4 }}>
                                 <Grid container spacing={2} columns={{ xs: 12, md: 12, lg: 12 }} sx={{ mb: 2 }}>
                                     <Grid item xs={12} md={4} lg={4}>
-                                        <img style={{ borderRadius: '50%', height: '80px' }} src={review.image} width='100%' alt="" />
+                                        <img style={{ borderRadius: '50%', maxHeight: '80px' }} src={review.image} width='100%' alt="" />
 
                                     </Grid>
                                     <Grid item xs={12} md={8} lg={8}>
