@@ -43,6 +43,7 @@ const MakeAdmin = () => {
                     label="Email"
                     variant="standard"
                     onBlur={handleOnBlur} />
+                <br />
                 <MuiButton type="submit">Make Admin</MuiButton>
             </form>
         </div>

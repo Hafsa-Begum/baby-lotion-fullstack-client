@@ -43,21 +43,24 @@ const ManageOrders = () => {
         }
     }
 
-    // const handleOrderShipped = id => {
-    //     setStatus('pending')
-    //     console.log(id)
-    //     fetch(`http://localhost:5000/updateStatus/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(status)
-    //     })
-    //         .then(res => res.json)
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-    // }
+    const handleOrderShipped = id => {
+        setStatus('pending')
+        console.log(id)
+        fetch(`https://secret-castle-32920.herokuapp.com/updateStatus/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    alert('Your order is Shipped')
+                }
+            })
+    }
     const [orderSuccess, setOrderSuccess] = useState(false);
     const [openOrder, setOrderOpen] = React.useState(false);
     const handleOrderOpen = () => setOrderOpen(true);
@@ -95,8 +98,8 @@ const ManageOrders = () => {
                                 <TableCell align="right">{row?.productName}</TableCell>
                                 <TableCell align="right">{row?.status}</TableCell>
                                 <TableCell align="right">
-                                    {/* <Button onClick={() => handleOrderShipped(row?._id)}> Shipped</Button> */}
-                                    <Button onClick={handleOrderOpen}> Shipped</Button>
+                                    <Button onClick={() => handleOrderShipped(row?._id)}>Update</Button>
+                                    {/* <Button onClick={handleOrderOpen}> Shipped</Button> */}
                                     <IconButton onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
