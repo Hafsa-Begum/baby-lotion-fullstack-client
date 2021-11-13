@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
-import StatusModal from '../StatusModal/StatusModal';
 import { makeStyles } from '@mui/styles';
 
 
@@ -71,11 +70,6 @@ const ManageOrders = () => {
                 }
             })
     }
-    const [orderSuccess, setOrderSuccess] = useState(false);
-    const [openOrder, setOrderOpen] = React.useState(false);
-    const handleOrderOpen = () => setOrderOpen(true);
-    const handleOrderClose = () => setOrderOpen(false);
-
 
     return (
         <div>
@@ -109,17 +103,11 @@ const ManageOrders = () => {
                                 <TableCell align="right">{row?.status}</TableCell>
                                 <TableCell align="right">
                                     <Button className={tableHead} onClick={() => handleOrderShipped(row?._id)}>Update</Button>
-                                    {/* <Button onClick={handleOrderOpen}> Shipped</Button> */}
                                     <IconButton color="error" onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>
-                                <StatusModal
-                                    setOrderSuccess={setOrderSuccess}
-                                    singleProduct={row}
-                                    openOrder={openOrder}
-                                    handleOrderClose={handleOrderClose}
-                                ></StatusModal>
+
                             </TableRow>
                         ))}
                     </TableBody>

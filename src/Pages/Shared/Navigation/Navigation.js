@@ -66,7 +66,7 @@ export default function Navigation() {
             <List>
 
                 <ListItem button>
-                    <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/home'>Home</NavLink></ListItemText>
+                    <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/home'><HomeIcon />Home</NavLink></ListItemText>
                 </ListItem>
                 <ListItem button>
                     <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/explore'><ExploreIcon />Explore</NavLink></ListItemText>
@@ -115,21 +115,7 @@ export default function Navigation() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        {/* <Box style={{ marginTop: '5px' }} className={navLogo}>
-                            <img style={{
-                                width: '80%',
-                                height: '50%',
-                                backgroundColor: '#F63E7B',
-                                borderRadius: '50%'
-                            }} src={logo} alt="" />
 
-                            <Typography style={{
-                                display: 'inline-block !important',
-
-                            }} variant="h6" >
-                                <span style={{ color: "#F63E7B !important" }}>Pink</span> Babs
-                            </Typography>
-                        </Box> */}
                         <List sx={{ mb: 0 }} className={navLogo}>
 
                             <ListItemText><Box style={{ backgroundColor: '#F63E7B', borderRadius: '50%', display: 'inline-block', }}>

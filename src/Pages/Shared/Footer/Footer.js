@@ -5,6 +5,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
+import CallIcon from '@mui/icons-material/Call';
 import { makeStyles } from '@mui/styles';
 import MuiButton from '../../../StyledComponents/MuiButton';
 import logo from '../../../images/logo (2).png'
@@ -50,6 +51,8 @@ const Footer = () => {
                     <Grid item xs={12} sm={12} md={6} lg={3}>
                         <List>
                             <ListItemText sx={{ color: '#F63E7B', mb: 1 }}><Typography variant="h6">Contact Us</Typography></ListItemText>
+                            <IconButton className={emailIcon}><CallIcon /></IconButton>
+                            <MuiButton variant="contained">+8065432145</MuiButton>
                             <ListItemText><IconButton className={emailIcon}><EmailIcon /></IconButton> info.pink@babs.com</ListItemText>
                             <ListItemText></ListItemText>
                             <ListItemText ><Typography variant="h6">Follow Us:</Typography></ListItemText>
@@ -85,8 +88,7 @@ const Footer = () => {
                             <ListItemText>Returns & Refunds</ListItemText>
                             <ListItemText>Online Stores</ListItemText>
                             <ListItemText>Terms & Condition</ListItemText>
-                            <Typography>Call Now</Typography>
-                            <MuiButton variant="contained">+8065432145</MuiButton>
+
                         </List>
                     </Grid>
 

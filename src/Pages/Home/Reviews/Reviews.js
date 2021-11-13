@@ -41,11 +41,11 @@ const Reviews = () => {
                         reviews?.map(review => <Grid key={review._id} item xs={12} md={4} lg={4}>
                             <Box className={classes.review} sx={{ mx: 3, p: 4 }}>
                                 <Grid container spacing={2} columns={{ xs: 12, md: 12, lg: 12 }} sx={{ mb: 2 }}>
-                                    <Grid item xs={12} md={4} lg={4}>
-                                        <img style={{ borderRadius: '50%', maxHeight: '80px' }} src={review.image} width='100%' alt="" />
+                                    <Grid item xs={4} md={4} lg={4}>
+                                        <img style={{ borderRadius: '50%', maxHeight: '80px', }} width='100%' src={review.image} alt="" />
 
                                     </Grid>
-                                    <Grid item xs={12} md={8} lg={8}>
+                                    <Grid item xs={8} md={8} lg={8}>
                                         <Box>
                                             <Typography color='#F63E7B' variant='h6'> {review.name}</Typography>
                                             <Typography variant='body1'> {review.designation}</Typography>

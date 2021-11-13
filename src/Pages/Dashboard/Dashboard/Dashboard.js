@@ -30,6 +30,9 @@ import StoreIcon from '@mui/icons-material/Store';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import ReviewsIcon from '@mui/icons-material/Reviews';
+import PersonIcon from '@mui/icons-material/Person';
+import VerifiedUserSharpIcon from '@mui/icons-material/VerifiedUserSharp';
 import { makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/material';
 
@@ -72,7 +75,8 @@ function AdminDashboard(props) {
         <div>
             <Toolbar />
             <List>
-                {user.email && <ListItem><ListItemText>Hi, {user.displayName}</ListItemText></ListItem>}
+                {user.email && !admin && <ListItem><ListItemText><IconButton className={designIcon}><PersonIcon /></IconButton>  <span style={{ fontWeight: 500 }}>{user.displayName}</span><br /> (User) </ListItemText></ListItem>}
+                {user.email && admin && <ListItem><ListItemText> <IconButton className={designIcon}><VerifiedUserSharpIcon /></IconButton> <span style={{ fontWeight: 500 }}>{user.displayName}</span> <br /> (Admin)</ListItemText></ListItem>}
                 <ListItem button >
 
                     <NavLink style={{
@@ -105,11 +109,11 @@ function AdminDashboard(props) {
 
                 <ListItem button >
                     <IconButton className={designIcon}>
-                        <AddBoxRoundedIcon />
+                        <ReviewsIcon />
                     </IconButton>
                     <NavLink style={{
                         textDecoration: 'none'
-                    }} to={`${url}/addReview`}><Button className={navButton}> Add Review</Button></NavLink>
+                    }} to={`${url}/review`}><Button className={navButton}> Review</Button></NavLink>
                 </ListItem>
                 <Divider />
                 {
@@ -240,7 +244,7 @@ function AdminDashboard(props) {
                     <Route exact path={`${path}/payment`}>
                         <Payment />
                     </Route>
-                    <Route exact path={`${path}/addReview`}>
+                    <Route exact path={`${path}/review`}>
                         <AddReview />
                     </Route>
                     <AdminRoute exact path={`${path}/manageOrders`}>
