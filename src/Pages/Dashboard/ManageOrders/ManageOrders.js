@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 
@@ -100,7 +100,12 @@ const ManageOrders = () => {
                                 <TableCell align="right">{row?.phone}</TableCell>
                                 <TableCell align="right">{row?.date}</TableCell>
                                 <TableCell align="right">{row?.productName}</TableCell>
-                                <TableCell align="right">{row?.status}</TableCell>
+                                <TableCell align="right">{
+                                    row?.status === 'pending' ? <Typography variant='body1' color='primary'>pending</Typography> :
+                                        <Typography variant='body1' color='#F63E7B'>shipped</Typography>
+                                }
+
+                                </TableCell>
                                 <TableCell align="right">
                                     <Button className={tableHead} onClick={() => handleOrderShipped(row?._id)}>Update</Button>
                                     <IconButton color="error" onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">

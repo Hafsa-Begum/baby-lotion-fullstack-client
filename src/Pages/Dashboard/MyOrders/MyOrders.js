@@ -1,10 +1,18 @@
 import { Button, Container, Grid, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
-import MuiButton from '../../../StyledComponents/MuiButton';
 
 const MyOrders = () => {
+    const useStyle = makeStyles({
+        shippedButton: {
+            outline: '#F63E7B !important',
+            color: '#F63E7B'
+        }
+    })
+    const { shippedButton } = useStyle()
+
     const [myOrders, setMyOrders] = useState([]);
     const { user } = useAuth();
 
@@ -51,13 +59,13 @@ const MyOrders = () => {
                                     <Grid item xs={6} sm={6} md={6} lg={6}>
                                         {
                                             product.status === 'pending' ? <Button style={{ marginRight: '15px' }} variant='outlined' >pending</Button> :
-                                                <MuiButton style={{ marginRight: '15px' }} >shipped</MuiButton>
+                                                <Button variant="outlined" className={shippedButton} style={{ marginRight: '15px' }} >shipped</Button>
                                         }
 
-                                        <Button onClick={() => handleCancelOrder(product?._id)} variant="contained" color="error">Cancel Order</Button>
+                                        <Button onClick={() => handleCancelOrder(product?._id)} variant="contained" color="error">Cancel</Button>
                                         <Typography variant='h5' sx={{ my: 2, fontWeight: 600 }}>{product?.productName}</Typography>
                                         <Typography variant='h4' style={{ color: '#F63E7B' }}>Price: ${product?.productPrice}</Typography>
-                                        <Typography variant='body1' sx={{ my: 2 }}>Order On: {product?.date}</Typography>
+                                        <Typography variant='body1' sx={{ my: 2 }}>Ordered On: {product?.date}</Typography>
 
                                     </Grid>
                                     <Grid item xs={6} sm={6} md={6} lg={6}>
