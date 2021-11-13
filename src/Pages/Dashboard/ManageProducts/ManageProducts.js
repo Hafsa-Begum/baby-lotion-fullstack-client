@@ -11,10 +11,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import UpdateModal from '../UpdateModal/UpdateModal';
 import { Alert } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 
 const ManageProducts = () => {
     const [manageProducts, setManageProducts] = useState([]);
+    const useStyle = makeStyles({
+        tableHead: {
+            color: '#F63E7B !important'
+        }
+    })
+
+    const { tableHead } = useStyle();
 
     useEffect(() => {
         fetch('https://secret-castle-32920.herokuapp.com/allProducts')
@@ -59,11 +67,11 @@ const ManageProducts = () => {
                 <Table sx={{}} aria-label="Appointments table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Image</TableCell>
-                            <TableCell align="right">Name</TableCell>
-                            <TableCell align="right">Price</TableCell>
-                            <TableCell align="right">Quantity</TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell className={tableHead}>Image</TableCell>
+                            <TableCell className={tableHead} align="right">Name</TableCell>
+                            <TableCell className={tableHead} align="right">Price</TableCell>
+                            <TableCell className={tableHead} align="right">Quantity</TableCell>
+                            <TableCell className={tableHead} align="right">Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -79,11 +87,11 @@ const ManageProducts = () => {
                                 <TableCell align="right">${product?.price}</TableCell>
                                 <TableCell align="right">{product?.quantity}</TableCell>
                                 <TableCell align="right">
-                                    <IconButton onClick={handleUpdateOpen} aria-label="create" size="large" >
+                                    <IconButton className={tableHead} onClick={handleUpdateOpen} aria-label="create" size="large" >
                                         < CreateIcon fontSize="inherit" />
                                     </IconButton>
 
-                                    <IconButton onClick={() => handleDeleteProduct(product?._id)} aria-label="delete" size="large">
+                                    <IconButton color="error" onClick={() => handleDeleteProduct(product?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>

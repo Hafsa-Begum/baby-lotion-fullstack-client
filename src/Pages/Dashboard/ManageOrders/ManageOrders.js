@@ -10,17 +10,26 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import StatusModal from '../StatusModal/StatusModal';
+import { makeStyles } from '@mui/styles';
 
 
 const ManageOrders = () => {
     const [manageOrders, setManageOrders] = useState([]);
+    const [control, setControl] = useState(false)
     const [status, setStatus] = useState('');
+    const useStyle = makeStyles({
+        tableHead: {
+            color: '#F63E7B !important'
+        }
+    })
+
+    const { tableHead } = useStyle();
 
     useEffect(() => {
         fetch('https://secret-castle-32920.herokuapp.com/manageAllOrders')
             .then(res => res.json())
             .then(data => setManageOrders(data))
-    }, [])
+    }, [control])
 
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, you want to cancel order?')
@@ -58,6 +67,7 @@ const ManageOrders = () => {
                 console.log(data)
                 if (data.modifiedCount) {
                     alert('Your order is Shipped')
+                    setControl(!control)
                 }
             })
     }
@@ -74,13 +84,13 @@ const ManageOrders = () => {
                 <Table sx={{}} aria-label="Appointments table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ordered By</TableCell>
-                            <TableCell align="right">Address</TableCell>
-                            <TableCell align="right">Phone</TableCell>
-                            <TableCell align="right">Date</TableCell>
-                            <TableCell align="right">Products</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell className={tableHead}>Ordered By</TableCell>
+                            <TableCell className={tableHead} align="right">Address</TableCell>
+                            <TableCell className={tableHead} align="right">Phone</TableCell>
+                            <TableCell className={tableHead} align="right">Date</TableCell>
+                            <TableCell className={tableHead} align="right">Products</TableCell>
+                            <TableCell className={tableHead} align="right">Status</TableCell>
+                            <TableCell className={tableHead} align="right">Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -98,9 +108,9 @@ const ManageOrders = () => {
                                 <TableCell align="right">{row?.productName}</TableCell>
                                 <TableCell align="right">{row?.status}</TableCell>
                                 <TableCell align="right">
-                                    <Button onClick={() => handleOrderShipped(row?._id)}>Update</Button>
+                                    <Button className={tableHead} onClick={() => handleOrderShipped(row?._id)}>Update</Button>
                                     {/* <Button onClick={handleOrderOpen}> Shipped</Button> */}
-                                    <IconButton onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">
+                                    <IconButton color="error" onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>
