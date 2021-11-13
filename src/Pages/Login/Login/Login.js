@@ -47,10 +47,11 @@ const Login = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
                     }} onSubmit={handleOnSubmit}>
                         <TextField
                             sx={{ width: '90%', m: 2 }}
+                            width='480px'
                             id="standard-basic"
                             type="email"
                             name="email"
