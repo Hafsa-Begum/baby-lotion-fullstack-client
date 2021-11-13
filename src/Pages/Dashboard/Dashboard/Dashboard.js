@@ -75,8 +75,19 @@ function AdminDashboard(props) {
         <div>
             <Toolbar />
             <List>
-                {user.email && !admin && <ListItem><ListItemText><IconButton className={designIcon}><PersonIcon /></IconButton>  <span style={{ fontWeight: 500 }}>{user.displayName}</span><br /> (User) </ListItemText></ListItem>}
-                {user.email && admin && <ListItem><ListItemText> <IconButton className={designIcon}><VerifiedUserSharpIcon /></IconButton> <span style={{ fontWeight: 500 }}>{user.displayName}</span> <br /> (Admin)</ListItemText></ListItem>}
+                {user.email && !admin && <>
+                    <ListItem><ListItemText> <span style={{ fontWeight: 500 }}>{user.displayName}</span><br /> </ListItemText></ListItem>
+                    <ListItem><ListItemText><IconButton className={designIcon}><PersonIcon /></IconButton> User </ListItemText></ListItem>
+                </>
+                }
+
+                {
+                    user.email && admin &&
+                    <>
+                        <ListItem><ListItemText>  <span style={{ fontWeight: 500 }}>{user.displayName}</span></ListItemText></ListItem>
+                        <ListItem><ListItemText><IconButton className={designIcon}><VerifiedUserSharpIcon /></IconButton>Admin </ListItemText></ListItem>
+                    </>
+                }
                 <ListItem button >
 
                     <NavLink style={{

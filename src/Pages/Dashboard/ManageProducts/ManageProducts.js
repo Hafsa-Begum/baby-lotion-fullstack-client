@@ -8,8 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CreateIcon from '@mui/icons-material/Create';
-import UpdateModal from '../UpdateModal/UpdateModal';
 import { Alert } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -41,9 +39,8 @@ const ManageProducts = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if (data.deletedCount) {
-                        alert('Your product is deleted.');
+                        setUpdateSuccess(true)
                         const remaining = manageProducts.filter(order => order._id !== id);
                         setManageProducts(remaining);
                     }
@@ -52,17 +49,14 @@ const ManageProducts = () => {
     }
 
     const [updateSuccess, setUpdateSuccess] = useState(false);
-    const [openUpdate, setUpdateOpen] = React.useState(false);
-    const handleUpdateOpen = () => setUpdateOpen(true);
-    const handleUpdateClose = () => setUpdateOpen(false);
+    // const [openUpdate, setUpdateOpen] = React.useState(false);
+    // const handleUpdateOpen = () => setUpdateOpen(true);
+    // const handleUpdateClose = () => setUpdateOpen(false);
 
-    // const handleUpdateProduct = id =>{
-
-    // }
     return (
         <div>
             <h2>Manage All Products {manageProducts.length}</h2>
-            {updateSuccess && <Alert severity="success">Your product is updated successfully!</Alert>}
+            {updateSuccess && <Alert severity="success">Your product is deleted successfully!</Alert>}
             <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Appointments table">
                     <TableHead>
@@ -87,21 +81,17 @@ const ManageProducts = () => {
                                 <TableCell align="right">${product?.price}</TableCell>
                                 <TableCell align="right">{product?.quantity}</TableCell>
                                 <TableCell align="right">
-                                    <IconButton className={tableHead} onClick={handleUpdateOpen} aria-label="create" size="large" >
-                                        < CreateIcon fontSize="inherit" />
-                                    </IconButton>
-
                                     <IconButton color="error" onClick={() => handleDeleteProduct(product?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>
-                                <UpdateModal
+                                {/* <UpdateModal
                                     setUpdateSuccess={setUpdateSuccess}
                                     product={product}
                                     openUpdate={openUpdate}
                                     handleUpdateClose={handleUpdateClose}
                                 >
-                                </UpdateModal>
+                                </UpdateModal> */}
                             </TableRow>
                         ))}
                     </TableBody>

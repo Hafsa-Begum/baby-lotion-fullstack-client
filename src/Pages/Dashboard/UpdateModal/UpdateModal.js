@@ -20,8 +20,8 @@ const style = {
 };
 
 const UpdateModal = ({ product, openUpdate, handleUpdateClose, setUpdateSuccess }) => {
-    const { _id, name, quantity, price, image, description } = product;
-    const [updateInfo, setUpdateInfo] = useState();
+    const { id, name, quantity, price, image, description } = product;
+    const [updateInfo, setUpdateInfo] = useState({});
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -31,19 +31,15 @@ const UpdateModal = ({ product, openUpdate, handleUpdateClose, setUpdateSuccess 
         setUpdateInfo(newInfo);
     }
 
-    const handleUpdateProductSubmit = e => {
-        //collect order info
-        // const updateData = {
-        //     ...updateInfo
-        // }
-        const data = { _id };
+    const handleUpdateProductSubmit = (e) => {
+
         //send to the server
-        fetch('https://secret-castle-32920.herokuapp.com/updateProduct', {
+        fetch(`http://localhost:5000/updateProduct/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ updateInfo })
         })
             .then(res => res.json())
             .then(data => {

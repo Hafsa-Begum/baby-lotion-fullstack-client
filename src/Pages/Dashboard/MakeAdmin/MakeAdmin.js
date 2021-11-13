@@ -19,12 +19,12 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.modifiedCount) {
                     alert('Admin created successfully!')
                 }
             })
         e.preventDefault();
+        e.target.reset();
 
     }
 
@@ -33,7 +33,7 @@ const MakeAdmin = () => {
             textAlign: 'center',
             marginTop: '50px'
         }}>
-            <Typography sx={{ mb: 10 }} variant="p">Enter email whom you want to made admin</Typography>
+            <Typography sx={{ mb: 10 }} variant="p">Enter email whom you want to make admin</Typography>
             <form onSubmit={handleAdminSubmit}>
                 <TextField
                     sx={{ width: '30%', m: 2 }}
