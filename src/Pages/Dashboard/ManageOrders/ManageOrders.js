@@ -9,10 +9,12 @@ import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import StatusModal from '../StatusModal/StatusModal';
 
 
 const ManageOrders = () => {
     const [manageOrders, setManageOrders] = useState([]);
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         fetch('https://secret-castle-32920.herokuapp.com/manageAllOrders')
@@ -41,20 +43,26 @@ const ManageOrders = () => {
         }
     }
 
-    const handleOrderShipped = id => {
-        console.log(id)
-        fetch('https://secret-castle-32920.herokuapp.com/update/orderStatus', {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(id)
-        })
-            .then(res => res.json)
-            .then(data => {
-                console.log(data)
-            })
-    }
+    // const handleOrderShipped = id => {
+    //     setStatus('pending')
+    //     console.log(id)
+    //     fetch(`http://localhost:5000/updateStatus/${id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(status)
+    //     })
+    //         .then(res => res.json)
+    //         .then(data => {
+    //             console.log(data)
+    //         })
+    // }
+    const [orderSuccess, setOrderSuccess] = useState(false);
+    const [openOrder, setOrderOpen] = React.useState(false);
+    const handleOrderOpen = () => setOrderOpen(true);
+    const handleOrderClose = () => setOrderOpen(false);
+
 
     return (
         <div>
@@ -87,11 +95,18 @@ const ManageOrders = () => {
                                 <TableCell align="right">{row?.productName}</TableCell>
                                 <TableCell align="right">{row?.status}</TableCell>
                                 <TableCell align="right">
-                                    <Button onClick={() => handleOrderShipped(row?._id)}> Shipped</Button>
+                                    {/* <Button onClick={() => handleOrderShipped(row?._id)}> Shipped</Button> */}
+                                    <Button onClick={handleOrderOpen}> Shipped</Button>
                                     <IconButton onClick={() => handleDeleteOrder(row?._id)} aria-label="delete" size="large">
                                         <DeleteIcon fontSize="inherit" />
                                     </IconButton>
                                 </TableCell>
+                                <StatusModal
+                                    setOrderSuccess={setOrderSuccess}
+                                    singleProduct={row}
+                                    openOrder={openOrder}
+                                    handleOrderClose={handleOrderClose}
+                                ></StatusModal>
                             </TableRow>
                         ))}
                     </TableBody>

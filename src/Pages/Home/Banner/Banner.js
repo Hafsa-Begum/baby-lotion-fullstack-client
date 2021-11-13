@@ -24,7 +24,7 @@ const Banner = () => {
                         </NavLink>
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
-                        <img style={{ borderRadius: '50%' }} width='100%' src={banner} alt="" />
+                        <img style={{ borderRadius: '50%', padding: '20px' }} width='100%' src={banner} alt="" />
                     </Grid>
 
                 </Grid>

@@ -16,6 +16,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import logo from '../../../images/logo (2).png';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import ExploreIcon from '@mui/icons-material/Explore';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 export default function Navigation() {
     const { user, logOut } = useAuth()
@@ -23,8 +28,8 @@ export default function Navigation() {
 
     const useStyle = makeStyles({
         navAppBar: {
-            backgroundColor: '#fff !important',
-            color: '#F63E7B !important'
+            backgroundColor: 'rgba(246, 62, 123, .6) !important',
+            color: '#fff !important'
         },
         navIcon: {
             [theme.breakpoints.up('sm')]: {
@@ -64,16 +69,16 @@ export default function Navigation() {
                     <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/home'>Home</NavLink></ListItemText>
                 </ListItem>
                 <ListItem button>
-                    <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/explore'>Explore</NavLink></ListItemText>
+                    <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/explore'><ExploreIcon />Explore</NavLink></ListItemText>
                 </ListItem>
                 {
                     user.email ?
                         <>
                             <ListItem button>
-                                <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/dashboard'>Dashboard</NavLink></ListItemText>
+                                <ListItemText><NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/dashboard'><DashboardIcon /> Dashboard</NavLink></ListItemText>
                             </ListItem>
                             <ListItem button>
-                                <ListItemText><MuiButton onClick={logOut}>Logout</MuiButton> </ListItemText>
+                                <ListItemText><MuiButton onClick={logOut}><LogoutIcon />Logout</MuiButton> </ListItemText>
 
                             </ListItem>
                             <ListItem>
@@ -84,7 +89,7 @@ export default function Navigation() {
                         :
                         <ListItem button>
                             <ListItemText> <NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/login'>
-                                <Button variant="contained" color="inherit">Login</Button>
+                                <Button variant="contained" color="inherit"><LoginIcon />Login</Button>
                             </NavLink></ListItemText>
                         </ListItem>
                 }
@@ -136,23 +141,23 @@ export default function Navigation() {
                         </List>
 
                         <Box className={navItemContainer}>
-                            <NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/home'>
-                                <Button color="inherit">Home</Button>
+                            <NavLink style={{ textDecoration: 'none', color: '#fff' }} to='/home'>
+                                <Button color="inherit"><HomeIcon />Home</Button>
                             </NavLink>
-                            <NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/explore'>
-                                <Button color="inherit">Explore</Button>
+                            <NavLink style={{ textDecoration: 'none', color: '#fff' }} to='/explore'>
+                                <Button color="inherit"><ExploreIcon /> Explore</Button>
                             </NavLink>
 
                             {
                                 user.email ?
                                     <>
-                                        <NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/dashboard'>
-                                            <Button color="inherit">Dashboard</Button>
+                                        <NavLink style={{ textDecoration: 'none', color: '#fff' }} to='/dashboard'>
+                                            <Button color="inherit"><DashboardIcon />Dashboard</Button>
                                         </NavLink>
-                                        <MuiButton onClick={logOut}>Logout</MuiButton> <span style={{ color: '#000' }}>{user.displayName}</span>
+                                        <MuiButton onClick={logOut}><LogoutIcon />Logout</MuiButton> <span style={{ color: '#000' }}>{user.displayName}</span>
                                     </> :
-                                    <NavLink style={{ textDecoration: 'none', color: '#F63E7B' }} to='/login'>
-                                        <Button color="inherit">Login</Button>
+                                    <NavLink style={{ textDecoration: 'none', color: '#fff' }} to='/login'>
+                                        <Button color="inherit"><LoginIcon /> Login</Button>
                                     </NavLink>
                             }
                         </Box>

@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, List, ListItem, ListItemText } from '@mui/material';
 import ManageOrders from '../ManageOrders/ManageOrders';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddProducts from '../AddProducts/AddProducts';
@@ -22,10 +22,42 @@ import Payment from '../Payment/Payment';
 import AddReview from '../AddReview/AddReview';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute'
 import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import StoreIcon from '@mui/icons-material/Store';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/material';
 
 const drawerWidth = 240;
 
 function AdminDashboard(props) {
+    const theme = useTheme();
+    const useStyle = makeStyles({
+        navIcon: {
+            color: '#000 !important'
+        },
+        designIcon: {
+            color: '#F63E7B !important'
+        },
+        dashboardNav: {
+            backgroundColor: 'rgba(246, 62, 123, .6) !important'
+        },
+        dashboardIcon: {
+            color: '#fff !important'
+        },
+        dashboard: {
+            [theme.breakpoints.down('sm')]: {
+                marginRight: 'auto !important'
+            }
+        }
+    })
+
+    const { navIcon: navButton, designIcon, dashboardNav, dashboardIcon, dashboard } = useStyle();
 
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -39,31 +71,98 @@ function AdminDashboard(props) {
     const drawer = (
         <div>
             <Toolbar />
-            <NavLink style={{
-                textDecoration: 'none'
-            }} to='/home'><MuiButton> Go Home</MuiButton></NavLink>
-            <br />
-            <Divider />
-            <NavLink style={{
-                textDecoration: 'none',
+            <List>
+                {user.email && <ListItem><ListItemText>Hi, {user.displayName}</ListItemText></ListItem>}
+                <ListItem button >
 
-            }} to={`${url}`}><Button>My Orders</Button></NavLink> <br />
-            <NavLink style={{
-                textDecoration: 'none'
-            }} to={`${url}/payment`}><Button>Payment</Button></NavLink> <br />
-            <NavLink style={{
-                textDecoration: 'none'
-            }} to={`${url}/addReview`}><Button><AddBoxRoundedIcon />  Add Review</Button></NavLink> <br />
-            {
-                admin &&
-                <Box>
-                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageOrders`}><Button>Manage All Orders</Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/addProducts`}><Button> <AddBoxRoundedIcon /> Add Products</Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageProducts`}><Button>Manage All Products</Button></NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}><Button>Make Admin</Button></NavLink>
+                    <NavLink style={{
+                        textDecoration: 'none'
+                    }} to='/home'><MuiButton>
+                            <HomeIcon />
+                            Home</MuiButton></NavLink>
+                </ListItem>
 
-                </Box>
-            }
+
+                <Divider />
+                <ListItem button >
+                    <IconButton className={designIcon}>
+                        <ShoppingBasketIcon />
+                    </IconButton>
+                    <NavLink style={{
+                        textDecoration: 'none',
+
+                    }} to={`${url}`}><Button className={navButton}>My Orders</Button></NavLink>
+                </ListItem>
+                <ListItem button >
+                    <IconButton className={designIcon}>
+                        <PaymentsIcon />
+                    </IconButton>
+                    <NavLink style={{
+                        textDecoration: 'none'
+                    }} to={`${url}/payment`}><Button className={navButton}>Payment</Button></NavLink>
+                </ListItem>
+
+
+                <ListItem button >
+                    <IconButton className={designIcon}>
+                        <AddBoxRoundedIcon />
+                    </IconButton>
+                    <NavLink style={{
+                        textDecoration: 'none'
+                    }} to={`${url}/addReview`}><Button className={navButton}> Add Review</Button></NavLink>
+                </ListItem>
+                <Divider />
+                {
+                    admin &&
+                    <Box>
+                        <ListItem button >
+                            <IconButton className={designIcon}>
+                                <StoreIcon />
+                            </IconButton>
+                            <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageOrders`}><Button className={navButton}>Manage Orders</Button></NavLink>
+                        </ListItem>
+
+                        <ListItem button >
+                            <IconButton className={designIcon}>
+                                <AddBoxRoundedIcon />
+                            </IconButton>
+                            <NavLink style={{ textDecoration: 'none' }} to={`${url}/addProducts`}><Button className={navButton}>  Add Products</Button></NavLink>
+                        </ListItem>
+
+                        <ListItem button >
+                            <IconButton className={designIcon}>
+                                <SettingsApplicationsIcon />
+                            </IconButton>
+                            <NavLink style={{ textDecoration: 'none' }} to={`${url}/manageProducts`}><Button className={navButton}>Manage Products</Button></NavLink>
+                        </ListItem>
+
+                        <ListItem className={navButton} button >
+                            <IconButton className={designIcon}>
+                                <AdminPanelSettingsIcon />
+                            </IconButton>
+                            <NavLink style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}><Button className={navButton}>Make Admin</Button></NavLink>
+                        </ListItem>
+
+
+                    </Box>
+                }
+                <Divider />
+
+                {
+                    user.email &&
+
+                    <ListItem button >
+                        <IconButton>
+
+                        </IconButton>
+                        <MuiButton onClick={logOut}><LogoutIcon />Logout</MuiButton>
+
+                    </ListItem>
+
+
+                }
+
+            </List>
 
         </div>
     );
@@ -73,7 +172,7 @@ function AdminDashboard(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar
+            <AppBar className={dashboardNav}
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -87,20 +186,14 @@ function AdminDashboard(props) {
                         edge="start"
                         onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { sm: 'none' } }}
+                        className={dashboard}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography style={{ marginRight: 'auto' }} variant="h6" noWrap component="div">
-                        Dashboard
+                    <Typography variant="h6" noWrap component="div">
+                        <IconButton className={dashboardIcon}><DashboardIcon /></IconButton> Dashboard
                     </Typography>
-                    <Box>
-                        {
-                            user.email &&
-                            <>
-                                <MuiButton onClick={logOut}>Logout</MuiButton>  <span>{user.displayName}</span>
-                            </>
-                        }
-                    </Box>
+
                 </Toolbar>
             </AppBar>
             <Box

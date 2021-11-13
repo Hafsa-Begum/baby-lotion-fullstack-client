@@ -24,14 +24,16 @@ const useStyle = makeStyles({
         color: '#F63E7B !important'
     }
 })
-// style={{
-//     backgroundColor: '#F63E7B',
-//     color: '#fff'
-// }}
+
 const Footer = () => {
     const { socialIcon, emailIcon } = useStyle();
     return (
-        <footer >
+        <footer style={{
+            backgroundColor: 'rgba(246, 62, 123, .6)',
+            color: '#fff',
+            paddingBottom: '40px',
+            paddingTop: '30px'
+        }}>
             <Container>
                 <Grid container spacing={3} sx={{ my: 3 }}>
                     <Grid item xs={12} sm={12} md={6} lg={3}>

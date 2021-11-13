@@ -28,16 +28,17 @@ const Reviews = () => {
     }, [])
 
     return (
-        <div style={{ textAlign: 'center', minHeight: 500, backgroundColor: 'rgba(246, 62, 123, .1)' }}>
+        <div style={{ textAlign: 'center', minHeight: 500, backgroundColor: 'rgba(246, 62, 123, .1)', paddingTop: '20px' }}>
             <Container sx={{ pt: 8, mt: 4 }}>
                 <Typography variant='h3' sx={{
-                    my: 10,
+                    mb: 10,
+                    mt: 2,
                     fontWeight: 600
                 }}>Reviews</Typography>
 
                 <Grid container spacing={2} columns={{ xs: 12, md: 12, lg: 12 }}>
                     {
-                        reviews?.map(review => <Grid item xs={12} md={4} lg={4}>
+                        reviews?.map(review => <Grid key={review._id} item xs={12} md={4} lg={4}>
                             <Box className={classes.review} sx={{ mx: 3, p: 4 }}>
                                 <Grid container spacing={2} columns={{ xs: 12, md: 12, lg: 12 }} sx={{ mb: 2 }}>
                                     <Grid item xs={12} md={4} lg={4}>

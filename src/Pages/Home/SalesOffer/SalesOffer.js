@@ -1,27 +1,15 @@
 import { Container, Grid, Typography, Box } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React from 'react';
 import salesImg from '../../../images/sales-img.jpg';
 import MuiButton from '../../../StyledComponents/MuiButton';
-//import bg from '../../../images/appointmentbg.png'
+
 const SalesOffer = () => {
-    const useStyle = makeStyles({
-        root: {
-            background: `linear-gradient(#3A4256,#3A4256)`,
-            backgroundBlendMode: 'overlay',
-            backgroundRepeat: 'no-repeat',
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: 200,
-            marginTop: 200
-        }
-    })
-    const { root } = useStyle()
+
     return (
         <div style={{ marginTop: '80px', }}>
             <Container style={{ marginLeft: '0px !important' }}>
                 <Typography variant='h3' sx={{
-                    my: 10,
+                    my: 16,
                     fontWeight: 600,
                     textAlign: 'center'
                 }}>Sales <span style={{ color: "#F63E7B" }}>Offer</span></Typography>
